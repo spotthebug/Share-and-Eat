@@ -1,0 +1,25 @@
+{
+  "name": "share-and-eat",
+  "version": "1.0.0",
+  "description": "Share-and-Eat is a web application that allows users to order food from different restaurants.",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/spotthebug/Share-and-Eat.git"
+  },
+  "author": "garima",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/spotthebug/Share-and-Eat/issues"
+  },
+  "homepage": "https://github.com/spotthebug/Share-and-Eat#readme",
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "ejs": "^2.5.8",
+    "express": "^4.16.3",
+    "mongoose": "^5.0.14"
+  }
+}
