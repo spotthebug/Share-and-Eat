@@ -1,5 +1,7 @@
 var mongoose = require("mongoose"),
-Schema = mongoose.Schema;
+Schema = mongoose.Schema,
+passportLocalMongoose = require('passport-local-mongoose');
+
 var uniqueValidator = require('mongoose-unique-validator');
 
 var UserSchema = new Schema({
@@ -10,7 +12,7 @@ var UserSchema = new Schema({
 });
 
 UserSchema.plugin(uniqueValidator);
-
+UserSchema.plugin(passportLocalMongoose);
 var User = mongoose.model('User', UserSchema);
 
 module.exports = User;
