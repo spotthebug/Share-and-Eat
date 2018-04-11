@@ -2,7 +2,6 @@ var db = require('./models');
 var faker = require('faker');
 var axios = require('axios');
 
-var restaurantsList = [];
 // var restaurantsList = [
 //   {
 //     name: "Shizen Izakaya",
@@ -40,7 +39,7 @@ db.Restaurant.remove({}, function(err, restaurants) {
   console.log('removed all restaurants');
   axios.get("https://api.eatstreet.com/publicapi/v1/restaurant/search?method=both&street-address=225+Bush+Street,+San+Francisco&access-token=21842944f2051268")
   .then(function(response){
-      for (var i = 0; i < 21; i ++) {
+      for (var i = 0; i < 15; i ++) {
             db.Restaurant.create({
               name: response.data.restaurants[i].name,
               location: response.data.restaurants[i].streetAddress + response.data.restaurants[i].city,
@@ -53,16 +52,416 @@ db.Restaurant.remove({}, function(err, restaurants) {
     console.log("created", restaurants.length, "restaurants");
 });
 
+restaurantsId = [];
+db.Restaurant.find({}, function(err, data) {
+      data.forEach(function(restaurant) {
+        restaurantsId.push(restaurant._id)
+      })
+  });
 
+db.Menu.remove({}, function(err, menu) {
+  console.log('removed all menu references');
+  for (var i = 0; i < 15; i ++) {
+    db.Menu.create({
+      restaurant: restaurantsId[i]
+    })
+  }
+  console.log('recreated each restaurants menu');
+  });
 
-// db.Menu.remove({}, function(err, menu) {
-//   console.log('removed all menu references');
-//   db.Menu.create(restaurantsList, function(err, menu){
-//      if (err) {
-//       console.log(err);
-//       return;
-//     }
-//   console.log('recreated all restaurants');
-//     console.log("created", restaurants.length, "restaurants");
-//   })
-// });
+menusId = [];
+db.Menu.find({}, function(err, data) {
+      data.forEach(function(menu) {
+        menusId.push(menu._id)
+      })
+});
+
+db.MenuItem.remove({}, function(err, item) {
+  console.log('removed all menu items');
+  for (var i = 0; i < 5; i ++) {
+    db.MenuItem.create({
+        menuItemType: "Appetizer",
+        itemName: faker.commerce.productName(),
+        description: faker.lorem.paragraph(),
+        price: Math.floor(Math.random() * (10 - 6) + 6),
+        menu: menusId[0]
+    })
+
+    db.MenuItem.create({
+        menuItemType: "Main Course",
+        itemName: faker.lorem.word(),
+        description: faker.lorem.paragraph(),
+        price: Math.floor(Math.random() * (20 - 10) + 10),
+        menu: menusId[0]
+    })
+
+    db.MenuItem.create({
+        menuItemType: "Dessert",
+        itemName: faker.lorem.word(),
+        description: faker.lorem.paragraph(),
+        price: Math.floor(Math.random() * (10 - 6) + 6),
+        menu: menusId[0]
+    })
+
+    db.MenuItem.create({
+        menuItemType: "Appetizer",
+        itemName: faker.commerce.productName(),
+        description: faker.lorem.paragraph(),
+        price: Math.floor(Math.random() * (10 - 8) + 8),
+        menu: menusId[1]
+    })
+
+    db.MenuItem.create({
+        menuItemType: "Main Course",
+        itemName: faker.lorem.word(),
+        description: faker.lorem.paragraph(),
+        price: Math.floor(Math.random() * (25 - 15) + 15),
+        menu: menusId[1]
+    })
+
+    db.MenuItem.create({
+        menuItemType: "Dessert",
+        itemName: faker.lorem.word(),
+        description: faker.lorem.paragraph(),
+        price: Math.floor(Math.random() * (12 - 9) + 9),
+        menu: menusId[1]
+    })
+
+    db.MenuItem.create({
+        menuItemType: "Appetizer",
+        itemName: faker.commerce.productName(),
+        description: faker.lorem.paragraph(),
+        price: Math.floor(Math.random() * (10 - 6) + 6),
+        menu: menusId[2]
+    })
+
+    db.MenuItem.create({
+        menuItemType: "Main Course",
+        itemName: faker.lorem.word(),
+        description: faker.lorem.paragraph(),
+        price: Math.floor(Math.random() * (18 - 12) + 12),
+        menu: menusId[2]
+    })
+
+    db.MenuItem.create({
+        menuItemType: "Dessert",
+        itemName: faker.lorem.word(),
+        description: faker.lorem.paragraph(),
+        price: Math.floor(Math.random() * (10 - 6) + 6),
+        menu: menusId[2]
+    })
+
+    db.MenuItem.create({
+        menuItemType: "Appetizer",
+        itemName: faker.commerce.productName(),
+        description: faker.lorem.paragraph(),
+        price: Math.floor(Math.random() * (10 - 8) + 8),
+        menu: menusId[3]
+    })
+
+    db.MenuItem.create({
+        menuItemType: "Main Course",
+        itemName: faker.lorem.word(),
+        description: faker.lorem.paragraph(),
+        price: Math.floor(Math.random() * (25 - 15) + 15),
+        menu: menusId[3]
+    })
+
+    db.MenuItem.create({
+        menuItemType: "Dessert",
+        itemName: faker.lorem.word(),
+        description: faker.lorem.paragraph(),
+        price: Math.floor(Math.random() * (12 - 9) + 9),
+        menu: menusId[3]
+    })
+
+    db.MenuItem.create({
+        menuItemType: "Appetizer",
+        itemName: faker.commerce.productName(),
+        description: faker.lorem.paragraph(),
+        price: Math.floor(Math.random() * (10 - 6) + 6),
+        menu: menusId[4]
+    })
+
+    db.MenuItem.create({
+        menuItemType: "Main Course",
+        itemName: faker.lorem.word(),
+        description: faker.lorem.paragraph(),
+        price: Math.floor(Math.random() * (18 - 12) + 12),
+        menu: menusId[4]
+    })
+
+    db.MenuItem.create({
+        menuItemType: "Dessert",
+        itemName: faker.lorem.word(),
+        description: faker.lorem.paragraph(),
+        price: Math.floor(Math.random() * (10 - 6) + 6),
+        menu: menusId[4]
+    })
+
+    db.MenuItem.create({
+        menuItemType: "Appetizer",
+        itemName: faker.commerce.productName(),
+        description: faker.lorem.paragraph(),
+        price: Math.floor(Math.random() * (10 - 8) + 8),
+        menu: menusId[5]
+    })
+
+    db.MenuItem.create({
+        menuItemType: "Main Course",
+        itemName: faker.lorem.word(),
+        description: faker.lorem.paragraph(),
+        price: Math.floor(Math.random() * (25 - 15) + 15),
+        menu: menusId[5]
+    })
+
+    db.MenuItem.create({
+        menuItemType: "Dessert",
+        itemName: faker.lorem.word(),
+        description: faker.lorem.paragraph(),
+        price: Math.floor(Math.random() * (12 - 9) + 9),
+        menu: menusId[5]
+    })
+
+    db.MenuItem.create({
+        menuItemType: "Appetizer",
+        itemName: faker.commerce.productName(),
+        description: faker.lorem.paragraph(),
+        price: Math.floor(Math.random() * (10 - 7) + 7),
+        menu: menusId[6]
+    })
+
+    db.MenuItem.create({
+        menuItemType: "Main Course",
+        itemName: faker.lorem.word(),
+        description: faker.lorem.paragraph(),
+        price: Math.floor(Math.random() * (22 - 14) + 14),
+        menu: menusId[6]
+    })
+
+    db.MenuItem.create({
+        menuItemType: "Dessert",
+        itemName: faker.lorem.word(),
+        description: faker.lorem.paragraph(),
+        price: Math.floor(Math.random() * (11 - 7) + 7),
+        menu: menusId[6]
+    })
+
+    db.MenuItem.create({
+        menuItemType: "Appetizer",
+        itemName: faker.commerce.productName(),
+        description: faker.lorem.paragraph(),
+        price: Math.floor(Math.random() * (10 - 8) + 8),
+        menu: menusId[7]
+    })
+
+    db.MenuItem.create({
+        menuItemType: "Main Course",
+        itemName: faker.lorem.word(),
+        description: faker.lorem.paragraph(),
+        price: Math.floor(Math.random() * (25 - 15) + 15),
+        menu: menusId[7]
+    })
+
+    db.MenuItem.create({
+        menuItemType: "Dessert",
+        itemName: faker.lorem.word(),
+        description: faker.lorem.paragraph(),
+        price: Math.floor(Math.random() * (12 - 9) + 9),
+        menu: menusId[7]
+    })
+
+    db.MenuItem.create({
+        menuItemType: "Appetizer",
+        itemName: faker.commerce.productName(),
+        description: faker.lorem.paragraph(),
+        price: Math.floor(Math.random() * (7 - 4) + 4),
+        menu: menusId[8]
+    })
+
+    db.MenuItem.create({
+        menuItemType: "Main Course",
+        itemName: faker.lorem.word(),
+        description: faker.lorem.paragraph(),
+        price: Math.floor(Math.random() * (12 - 9) + 9),
+        menu: menusId[8]
+    })
+
+    db.MenuItem.create({
+        menuItemType: "Dessert",
+        itemName: faker.lorem.word(),
+        description: faker.lorem.paragraph(),
+        price: Math.floor(Math.random() * (6 - 4) + 4),
+        menu: menusId[8]
+    })
+
+    db.MenuItem.create({
+        menuItemType: "Appetizer",
+        itemName: faker.commerce.productName(),
+        description: faker.lorem.paragraph(),
+        price: Math.floor(Math.random() * (7 - 4) + 4),
+        menu: menusId[9]
+    })
+
+    db.MenuItem.create({
+        menuItemType: "Main Course",
+        itemName: faker.lorem.word(),
+        description: faker.lorem.paragraph(),
+        price: Math.floor(Math.random() * (12 - 9) + 9),
+        menu: menusId[9]
+    })
+
+    db.MenuItem.create({
+        menuItemType: "Dessert",
+        itemName: faker.lorem.word(),
+        description: faker.lorem.paragraph(),
+        price: Math.floor(Math.random() * (6 - 4) + 4),
+        menu: menusId[9]
+    })
+
+    db.MenuItem.create({
+        menuItemType: "Appetizer",
+        itemName: faker.commerce.productName(),
+        description: faker.lorem.paragraph(),
+        price: Math.floor(Math.random() * (10 - 7) + 7),
+        menu: menusId[10]
+    })
+
+    db.MenuItem.create({
+        menuItemType: "Main Course",
+        itemName: faker.lorem.word(),
+        description: faker.lorem.paragraph(),
+        price: Math.floor(Math.random() * (13 - 9) + 9),
+        menu: menusId[10]
+    })
+
+    db.MenuItem.create({
+        menuItemType: "Dessert",
+        itemName: faker.lorem.word(),
+        description: faker.lorem.paragraph(),
+        price: Math.floor(Math.random() * (7 - 5) + 5),
+        menu: menusId[10]
+    })
+
+    db.MenuItem.create({
+        menuItemType: "Appetizer",
+        itemName: faker.commerce.productName(),
+        description: faker.lorem.paragraph(),
+        price: Math.floor(Math.random() * (7 - 4) + 4),
+        menu: menusId[11]
+    })
+
+    db.MenuItem.create({
+        menuItemType: "Main Course",
+        itemName: faker.lorem.word(),
+        description: faker.lorem.paragraph(),
+        price: Math.floor(Math.random() * (12 - 9) + 9),
+        menu: menusId[11]
+    })
+
+    db.MenuItem.create({
+        menuItemType: "Dessert",
+        itemName: faker.lorem.word(),
+        description: faker.lorem.paragraph(),
+        price: Math.floor(Math.random() * (6 - 4) + 4),
+        menu: menusId[11]
+    })
+
+    db.MenuItem.create({
+        menuItemType: "Appetizer",
+        itemName: faker.commerce.productName(),
+        description: faker.lorem.paragraph(),
+        price: Math.floor(Math.random() * (10 - 7) + 7),
+        menu: menusId[12]
+    })
+
+    db.MenuItem.create({
+        menuItemType: "Main Course",
+        itemName: faker.lorem.word(),
+        description: faker.lorem.paragraph(),
+        price: Math.floor(Math.random() * (22 - 14) + 14),
+        menu: menusId[12]
+    })
+
+    db.MenuItem.create({
+        menuItemType: "Dessert",
+        itemName: faker.lorem.word(),
+        description: faker.lorem.paragraph(),
+        price: Math.floor(Math.random() * (11 - 7) + 7),
+        menu: menusId[12]
+    })
+
+    db.MenuItem.create({
+        menuItemType: "Appetizer",
+        itemName: faker.commerce.productName(),
+        description: faker.lorem.paragraph(),
+        price: Math.floor(Math.random() * (10 - 7) + 7),
+        menu: menusId[13]
+    })
+
+    db.MenuItem.create({
+        menuItemType: "Main Course",
+        itemName: faker.lorem.word(),
+        description: faker.lorem.paragraph(),
+        price: Math.floor(Math.random() * (22 - 14) + 14),
+        menu: menusId[13]
+    })
+
+    db.MenuItem.create({
+        menuItemType: "Dessert",
+        itemName: faker.lorem.word(),
+        description: faker.lorem.paragraph(),
+        price: Math.floor(Math.random() * (11 - 7) + 7),
+        menu: menusId[13]
+    })
+
+    db.MenuItem.create({
+        menuItemType: "Appetizer",
+        itemName: faker.commerce.productName(),
+        description: faker.lorem.paragraph(),
+        price: Math.floor(Math.random() * (10 - 7) + 7),
+        menu: menusId[14]
+    })
+
+    db.MenuItem.create({
+        menuItemType: "Main Course",
+        itemName: faker.lorem.word(),
+        description: faker.lorem.paragraph(),
+        price: Math.floor(Math.random() * (13 - 9) + 9),
+        menu: menusId[14]
+    })
+
+    db.MenuItem.create({
+        menuItemType: "Dessert",
+        itemName: faker.lorem.word(),
+        description: faker.lorem.paragraph(),
+        price: Math.floor(Math.random() * (7 - 5) + 5),
+        menu: menusId[14]
+    })
+
+    db.MenuItem.create({
+        menuItemType: "Appetizer",
+        itemName: faker.commerce.productName(),
+        description: faker.lorem.paragraph(),
+        price: Math.floor(Math.random() * (10 - 7) + 7),
+        menu: menusId[15]
+    })
+
+    db.MenuItem.create({
+        menuItemType: "Main Course",
+        itemName: faker.lorem.word(),
+        description: faker.lorem.paragraph(),
+        price: Math.floor(Math.random() * (13 - 9) + 9),
+        menu: menusId[15]
+    })
+
+    db.MenuItem.create({
+        menuItemType: "Dessert",
+        itemName: faker.lorem.word(),
+        description: faker.lorem.paragraph(),
+        price: Math.floor(Math.random() * (7 - 5) + 5),
+        menu: menusId[15]
+    })
+  }
+  console.log('recreated menu items');
+  });
