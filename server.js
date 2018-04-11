@@ -13,6 +13,10 @@ var express = require("express"),
   passport = require("passport"),
   LocalStrategy = require("passport-local").Strategy;
 
+// var EatStreet = require('eatstreet');
+// var ES = new EatStreet("21842944f2051268");
+var axios = require('axios');
+
 // configure bodyParser (for receiving form data)
 app.use(bodyParser.urlencoded({ extended: true }));
 
@@ -70,7 +74,9 @@ app.get("/", function(req, res) {
     }
   })
 
-})
+});
+
+
 app.listen(process.env.PORT || 3000, function(){
   console.log("listening..");
 });

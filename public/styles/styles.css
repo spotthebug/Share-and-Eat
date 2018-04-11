@@ -1,12 +1,16 @@
 img{
   height: 300px;
-  width: 350px;
+  width: 300px;
 }
 
-.image-style {
-  margin-right: 8em;
+.col {
+  margin-top: 4em;
 }
 
-.row {
-  margin-left: auto;
+.container {
+  width: 85%;
+}
+
+h1 {
+  color: black;
 }
