@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Share and Eat</title>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
+  <link rel="stylesheet" href="/styles/styles.css">
+  <script src="../scripts/app.js"></script>
+
+</head>
+<body>
+  <div id="target" class="row">
+    <h2><%= restaurant.name %></h2>
+
+    <% for (let item of menuItems) { %>
+      <div class="destination card-panel col s2 card">
+        <p class="center-align"><%= item.menuItemType %></p>
+        <p><%= item.itemName %></p>
+        <p><%= item.description %></p>
+        <p>$ <%= item.price %></p>
+        <form method="POST" action="/checkout" id="<%item._id%>">
+          <div class="form-group">
+            <input type="text" name="quantity" class="form-control" placeholder="Enter quantity">
+            <div class="form-group">
+            <input type="submit" class="btn btn-block btn-primary" value="Log In">
+          </div>
+          </div>
+      </div>
+    <% } %>
+
+    <button>Checkout</button>
+
+  </div>
+
+  </div>
+
+</body>
+</html>

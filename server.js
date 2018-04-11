@@ -64,6 +64,11 @@ app.use(function(req, res, next) {
 //-------------Server------------->
 
 app.get("/", function(req, res) {
+
+})
+
+// All Restaurants displayed on the home page
+app.get("/api/restaurants", function(req, res) {
   Restaurant.find(function (err, allRestaurants) {
     console.log(allRestaurants);
     if (err) {
@@ -76,6 +81,29 @@ app.get("/", function(req, res) {
 
 });
 
+app.get('/api/restaurants/:id', function(req, res) {
+  restaurantId = req.params.id
+  Restaurant.findById((restaurantId), function(err, foundRestaurant) {
+    if (err) {
+      res.status(500).json({error: err.message});
+    }
+    else if (foundRestaurant) {
+      MenuItem.find({restaurant: foundRestaurant._id}, req.body, {new: true}).populate('restaurant').exec(function(err, allMenuItems) {
+        if (err) {
+          res.status(500).json({error: err.message});
+        }
+        else {
+          console.log(allMenuItems);
+          res.render("show", {menuItems: allMenuItems, restaurant: foundRestaurant});
+        }
+      });
+
+    }
+  })
+
+});
+
+
 // Signup
 app.get('/signup', function (req, res) {
  res.render('signup');
@@ -84,7 +112,7 @@ app.get('/signup', function (req, res) {
 
 app.post("/signup", function (req, res) {
   console.log("sanity check!! pre-signup");
-  User.register(new User({ name: req.body.username, email: req.body.email}), req.body.password,
+  User.register(new User({ name: req.body.name, email: req.body.email}), req.body.password,
       function (err, newUser) {
         console.log("Check if it enter function to auth");
         console.log("ERROR", err);
@@ -95,6 +123,10 @@ app.post("/signup", function (req, res) {
       }
   );
 });
+
+app.post("/checkout", function(req, res) {
+  MenuItem.
+})
 
 // Login and Logout
 

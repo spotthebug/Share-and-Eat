@@ -25,6 +25,7 @@
         <% for (let restaurant of restaurants) { %>
           <div class="col s4 image-style">
             <img src="<%=restaurant.image%>">
+            <p><a href="/api/restaurants/<%= restaurant._id %>"><%= restaurant.name %></a></p>
           </div>
         <% } %>
       </div>

@@ -6,7 +6,8 @@ var MenuItemSchema = new Schema({
   itemName: {type: String, required: true},
   description: {type: String, required: true},
   price: {type: Number, required: true},
-  menu: {type: Schema.Types.ObjectId, ref:'Menu'},
+  restaurant:  {type: Schema.Types.ObjectId, ref:'Restaurant' },
+  quantity: {type: Number, required: true}
 });
 
 var MenuItem = mongoose.model('MenuItem', MenuItemSchema);
