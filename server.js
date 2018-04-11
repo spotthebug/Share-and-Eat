@@ -13,6 +13,10 @@ var express = require("express"),
   passport = require("passport"),
   LocalStrategy = require("passport-local").Strategy;
 
+// var EatStreet = require('eatstreet');
+// var ES = new EatStreet("21842944f2051268");
+var axios = require('axios');
+
 // configure bodyParser (for receiving form data)
 app.use(bodyParser.urlencoded({ extended: true }));
 
@@ -70,7 +74,25 @@ app.get("/", function(req, res) {
     }
   })
 
-})
+});
+
+var restaurantParams = {
+    apiKey: '90fd4587554469b1f15b4f2e73e761809f4b4bcca52eedca',
+    customizations: true
+}
+
+// app.get("/restaurantdetails", function(req, res) {
+//   ES.RestaurantDetails(restaurantParams, function(err, restaurantDetails) {
+//     if (err) {
+//       res.status(500).json({ error: err.message})
+//     }
+//     else {
+//       console.log(restaurantDetails)
+//     }
+//   })
+
+// });
+
 app.listen(process.env.PORT || 3000, function(){
   console.log("listening..");
 });
