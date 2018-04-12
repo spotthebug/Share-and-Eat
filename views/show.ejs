@@ -10,7 +10,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
   <link rel="stylesheet" href="/styles/styles.css">
-  <script src="./scripts/app.js"></script>
+  <script src="../scripts/app.js"></script>
   <link href="https://fonts.googleapis.com/css?family=IBM+Plex+Sans+Condensed|IBM+Plex+Serif|Open+Sans+Condensed:300|PT+Sans|Poppins|Rajdhani" rel="stylesheet">
 
 
@@ -34,19 +34,31 @@
     </nav>
   </div>
 
-  <main>
-    <div id="target" class="row rest-layout">
-      <h2 class="center-align">All Restaurants</h2>
-      <div class="container row">
-        <% for (let restaurant of restaurants) { %>
-          <div class="col s4 each-rest">
-            <img class="rest-image" src="<%=restaurant.image%>">
-            <p class="rest-name"><a href="/api/restaurants/<%= restaurant._id %>"><%= restaurant.name %></a></p>
-          </div>
-        <% } %>
-      </div>
-    </div>
-  </main>
+  <div id="target" class="row">
+    <h2 class="center-align rest-show"><%= restaurant.name %></h2>
 
-    </body>
-    </html>
+    <div class="grey lighten-2 sizing">
+
+    <% for (let item of menuItems) { %>
+    <div class="items-layout">
+        <h2 class="menu-items"><%= item.menuItemType %></h2>
+        <p class="item-name"><%= item.itemName %> <span class="right">$<%= item.price %></span></p>
+        <p><%= item.description %></p>
+        <form method="POST" action="/cart" id="<%item._id%>">
+          <div class="form-group">
+            <input type="text" name="quantity" class="form-control" placeholder="Enter quantity">
+            <div class="form-group">
+              <input type="hidden" name="itemId" value="<%=item._id%>">
+              <input type="hidden" name="itemName" value="<%=item.itemName%>">
+              <input type="hidden" name="itemPrice" value="<%=item.price %>">
+              <input type="submit" class="btn btn-block btn-primary" value="Add">
+            </div>
+          </div>
+        </form>
+      </div>
+    <% } %>
+  </div>
+</div>
+
+</body>
+</html>

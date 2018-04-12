@@ -1,16 +1,128 @@
-img{
-  height: 300px;
-  width: 300px;
+body {
+font-family: 'Rajdhani', sans-serif;
 }
 
-.col {
-  margin-top: 4em;
+.header-background {
+  background-image: url("https://images.unsplash.com/photo-1517833969405-d4a24c2c8280?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=337939573212db4973e772dae9fa6cef&auto=format&fit=crop&w=1050&q=80");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  height: 45em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  margin-top: 3em;
+  padding: 0;
+}
+
+.centering {
+  position: relative;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  font-size: 7em;
+}
+
+.centering h1 {
+  color: white;
+  text-transform: uppercase;
+  letter-spacing: 0.5em;
+  margin: 0;
+  position: absolute;
+}
+
+img{
+  width: 100%;
+}
+
+.brand-logo {
+  width: 63px;
+  height: 63px;
+}
+
+.icon-image {
+  width: 100px;
+  height: 100px;
+}
+
+.the-what {
+  margin-top: 3em;
+  font-size: 1.2em;
+  margin-right: 3em;
+  margin-left: 3em;
+}
+
+.the-what h2 {
+  text-align: center;
+  font-size: 2.5em;
+  padding-top: 0.7em;
+  margin-bottom: 0em;
+}
+
+.footer {
+  margin-top: 0em;
+  padding-bottom: 4em;
+}
+
+.footer-details {
+  margin-top: 3em;
+  padding-top: 0em;
+  margin-bottom: 0em;
+  font-size: 1.1em;
+}
+
+.rest-image {
+  width: 260px;
+  height: 260px;
+}
+
+.rest-name {
+  font-size: 1.3em;
+  text-align: justify;
+  letter-spacing: 0.05em;
+  margin-bottom: 3.5em;
+}
+
+.rest-name a {
+  color: black;
+}
+
+.rest-layout {
+  margin: auto;
+}
+
+.rest-layout h2 {
+  margin-top: 1.5em;
 }
 
 .container {
-  width: 85%;
+  margin-top: 5em;
+  width: 98%;
+  margin-left: 5em;
 }
 
-h1 {
-  color: black;
+.menu-items {
+  font-size: 2em;
+}
+
+.items-layout {
+  margin-right: 9em;
+  margin-left: 2em;
+  margin-top: 3em;
+}
+
+.sizing {
+  margin-right: 8em;
+  margin-left: 8em;
+  padding: 1em;
+}
+
+.rest-show {
+  margin-top: 1em;
+}
+
+.item-name {
+  text-transform: capitalize;
+  font-size: 1.1em;
 }

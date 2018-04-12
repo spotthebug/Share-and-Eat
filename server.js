@@ -13,10 +13,6 @@ var express = require("express"),
   passport = require("passport"),
   LocalStrategy = require("passport-local").Strategy;
 
-// var EatStreet = require('eatstreet');
-// var ES = new EatStreet("21842944f2051268");
-var axios = require('axios');
-
 // configure bodyParser (for receiving form data)
 app.use(bodyParser.urlencoded({ extended: true }));
 
@@ -29,7 +25,8 @@ var db = require('./models'),
   Restaurant = db.Restaurant,
   Menu = db.Menu,
   MenuItem = db.MenuItem,
-  Order = db.Order;
+  Order = db.Order,
+  shoppingCart = db.shoppingCart;
 
 app.use(methodOverride("_method"));
 
@@ -37,8 +34,11 @@ app.use(cookieParser());
 app.use(session({
   secret: 'share-and-eat',
   resave: false,
-  saveUninitialized: false
+  saveUninitialized: false,
+  unset: 'destroy',
+  name: 'session cookie name'
 }));
+
 app.use(passport.initialize());
 app.use(passport.session());
 
@@ -70,11 +70,53 @@ app.get("/", function(req, res) {
       res.status(500).json({ error: err.message})
     }
     else {
-      res.render("index", {restaurants: allRestaurants})
+      res.render("index", {restaurants: allRestaurants, user: req.user, error: null});
+    }
+  })
+});
+
+app.get("/about", function(req,res) {
+  res.render("about", {user: req.user, error: null})
+});
+
+// All Restaurants displayed on the home page
+app.get("/api/restaurants", function(req, res) {
+  res.redirect("/", {user: req.user});
+});
+
+app.get('/api/restaurants/:id', function(req, res) {
+  restaurantId = req.params.id
+  Restaurant.findById((restaurantId), function(err, foundRestaurant) {
+    if (err) {
+      res.status(500).json({error: err.message});
+    }
+    else if (foundRestaurant) {
+      MenuItem.find({restaurant: foundRestaurant._id}, req.body, {new: true}).populate('restaurant').exec(function(err, allMenuItems) {
+        if (err) {
+          res.status(500).json({error: err.message});
+        }
+        else {
+          console.log(allMenuItems);
+          res.render("show", {menuItems: allMenuItems, restaurant: foundRestaurant, user: req.user});
+        }
+      });
+
     }
   })
 
 });
+
+// Shopping Cart
+app.post('/cart', function(req, res) {
+  console.log(req.body.itemId)
+  console.log(req.body.quantity)
+
+  // shoppingCart.create({
+  //   item: req.body.itemId,
+  //   quantity: req.body.quantity
+  // })
+
+})
 
 // Signup
 app.get('/signup', function (req, res) {
@@ -84,7 +126,7 @@ app.get('/signup', function (req, res) {
 
 app.post("/signup", function (req, res) {
   console.log("sanity check!! pre-signup");
-  User.register(new User({ name: req.body.username, email: req.body.email}), req.body.password,
+  User.register(new User({ username: req.body.username}), req.body.password,
       function (err, newUser) {
         console.log("Check if it enter function to auth");
         console.log("ERROR", err);

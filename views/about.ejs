@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Share and Eat</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
+  <link rel="stylesheet" href="/styles/styles.css">
+  <script src="./scripts/app.js"></script>
+  <link href="https://fonts.googleapis.com/css?family=IBM+Plex+Sans+Condensed|IBM+Plex+Serif|Open+Sans+Condensed:300|PT+Sans|Poppins|Rajdhani" rel="stylesheet">
+</head>
+
+<body>
+  <div class="navbar-fixed">
+    <nav>
+      <div class="nav-wrapper red lighten-2">
+        <a href="/" class="brand-logo"><img src="./images/S.png"></a>
+        <ul class="right hide-on-med-and-down">
+          <% if(!user) { %>
+            <a href="/signup" class="btn white black-text">Sign up</a>
+            <a href="/login" class="btn white black-text">Log In</a>
+          <% } else { %>
+            <a href="/api/users/<%=user.id%>"><%= user.username %></a>
+            <a href="/logout" class="btn white black-text">Log Out</a>
+          <% } %>
+        </ul>
+      </div>
+    </nav>
+  </div>
+
+  <header class="header-background">
+    <h1 class="centering white-text text-darken-2">Share and Eat</h1>
+  </header>
+
+  <div class ="row grey lighten-4 the-what">
+    <h2>How to Share-and-Eat</h2>
+    <div class="col s3 offset-s1"><img src="./images/search.png" class="icon-image"><p>The Where</p><p>Browse menus from your favorite local restaurant</p></div>
+    <div class="col s3 offset-s1"><img src="./images/mobile-app.png" class="icon-image"><p>The What</p><p>Select what you want to eat and if you would like to donate. Submit your order.</p></div>
+    <div class="col s3 offset-s1"><img src="./images/bag.png" class="icon-image"><p>The Pickup</p><p>Pickup and enjoy the food! </p></div>
+    </div>
+  </div>
+
+  <div class ="row grey lighten-4 the-what">
+    <h2>Why order with Share-and-Eat?</h2>
+
+      <div class="col s3 offset-s1"><img src="./images/jewelry.png" class="icon-image"><p>Discover</p><p>We'll help you find hidden gems in your neighborhood.</p></div>
+      <div class="col s3 offset-s1"><img src="./images/groceries.png" class="icon-image"><p>Better</p><p>Enjoy eating better by sharing the jow of a meal.</p></div>
+      <div class="col s3 offset-s1"><img src="./images/dinner-table.png" class="icon-image"><p>Food</p><p>Enjoy each bite more knowing you helped feed someone who is in need. </p></div>
+      </div>
+    </div>
+
+
+      <section class="row info card-panel red lighten-2 footer-details">
+        <div class="col s2 offset-s1 white-text">
+          <p>Facebook</p>
+          <p>Instagram</p>
+          <p>LinkedIn</p>
+          <p>E-mail Us</p>
+        </div>
+        <div class="col s2 offset-s1 white-text">
+          <p>Terms </p>
+          <p>Privacy Policy</p>
+          <p>Travel</p>
+          <p>Business</p>
+        </div>
+        <div class="col s2 offset-s1 white-text">
+          <p>Press</p>
+          <p>Policies</p>
+          <p>Social Responsiblity</p>
+          <p>Help</p>
+        </div>
+        <div class="col s2 offset-s1 white-text">
+          <p>Careers</p>
+          <p>Volunteering</p>
+          <p>Contact Us</p>
+          <p>FAQs</p>
+        </div>
+      </section>
+      <footer>
+          <p class="center-align white-text red lighten-2 footer">© Share-and-Eat</p>
+      </footer>
+    </body>
+    </html>
