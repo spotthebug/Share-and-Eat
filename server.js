@@ -80,11 +80,11 @@ app.get("/about", function(req,res) {
 });
 
 // All Restaurants displayed on the home page
-app.get("/api/restaurants", function(req, res) {
+app.get("/restaurants", function(req, res) {
   res.redirect("/", {user: req.user});
 });
 
-app.get('/api/restaurants/:id', function(req, res) {
+app.get('/restaurants/:id', function(req, res) {
   restaurantId = req.params.id
   Restaurant.findById((restaurantId), function(err, foundRestaurant) {
     if (err) {
@@ -120,7 +120,7 @@ app.post('/cart', function(req, res) {
 
 // Signup
 app.get('/signup', function (req, res) {
- res.render('signup');
+ res.render('signup', {user: req.user});
 });
 
 
@@ -145,7 +145,7 @@ app.post('/login',passport.authenticate('local'), function (req, res){
 });
 
 app.get('/login', function(req, res){
-  res.render("login")
+  res.render("login", {user: req.user})
 });
 
 app.get('/logout', function (req, res){
