@@ -126,3 +126,13 @@ img{
   text-transform: capitalize;
   font-size: 1.1em;
 }
+
+.form-group {
+  margin-left: 8em;
+  margin-right: 8em;
+}
+
+.login {
+  margin-top: 1.5em;
+  margin-left: 2em;
+}
