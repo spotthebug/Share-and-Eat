@@ -11,33 +11,54 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
   <link rel="stylesheet" href="/styles/styles.css">
   <script src="../scripts/app.js"></script>
+  <link href="https://fonts.googleapis.com/css?family=IBM+Plex+Sans+Condensed|IBM+Plex+Serif|Open+Sans+Condensed:300|PT+Sans|Poppins|Rajdhani" rel="stylesheet">
+
 
 </head>
 <body>
+
+  <div class="navbar-fixed">
+    <nav>
+      <div class="nav-wrapper red lighten-2">
+        <a href="/about" class="brand-logo"><img src="./images/S.png"></a>
+        <ul class="right hide-on-med-and-down">
+          <% if(!user) { %>
+            <a href="/signup" class="btn white black-text">Sign up</a>
+            <a href="/login" class="btn white black-text">Log In</a>
+          <% } else { %>
+            <a href="/api/users/<%=user.id%>"><%= user.username %></a>
+            <a href="/logout" class="btn white black-text">Log Out</a>
+          <% } %>
+        </ul>
+      </div>
+    </nav>
+  </div>
+
   <div id="target" class="row">
-    <h2><%= restaurant.name %></h2>
+    <h2 class="center-align rest-show"><%= restaurant.name %></h2>
+
+    <div class="grey lighten-2 sizing">
 
     <% for (let item of menuItems) { %>
-      <div class="destination card-panel col s2 card">
-        <p class="center-align"><%= item.menuItemType %></p>
-        <p><%= item.itemName %></p>
+    <div class="items-layout">
+        <h2 class="menu-items"><%= item.menuItemType %></h2>
+        <p class="item-name"><%= item.itemName %> <span class="right">$<%= item.price %></span></p>
         <p><%= item.description %></p>
-        <p>$ <%= item.price %></p>
-        <form method="POST" action="/checkout" id="<%item._id%>">
+        <form method="POST" action="/cart" id="<%item._id%>">
           <div class="form-group">
             <input type="text" name="quantity" class="form-control" placeholder="Enter quantity">
             <div class="form-group">
-            <input type="submit" class="btn btn-block btn-primary" value="Log In">
+              <input type="hidden" name="itemId" value="<%=item._id%>">
+              <input type="hidden" name="itemName" value="<%=item.itemName%>">
+              <input type="hidden" name="itemPrice" value="<%=item.price %>">
+              <input type="submit" class="btn btn-block btn-primary" value="Add">
+            </div>
           </div>
-          </div>
+        </form>
       </div>
     <% } %>
-
-    <button>Checkout</button>
-
   </div>
-
-  </div>
+</div>
 
 </body>
 </html>

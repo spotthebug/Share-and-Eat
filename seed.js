@@ -15,7 +15,7 @@ db.MenuItem.remove({},function(){
               image: response.data.restaurants[i].logoUrl,
             }, function(err, created) {
                 console.log(created)
-                for (var j = 0; j < 5; j++) {
+                for (var j = 0; j < 2; j++) {
                     db.MenuItem.create({
                     menuItemType: "Appetizer",
                     itemName: faker.commerce.productName(),
