@@ -41,7 +41,7 @@
         <% for (let restaurant of restaurants) { %>
           <div class="col s4 each-rest">
             <img class="rest-image" src="<%=restaurant.image%>">
-            <p class="rest-name"><a href="/api/restaurants/<%= restaurant._id %>"><%= restaurant.name %></a></p>
+            <p class="rest-name"><a href="/restaurants/<%= restaurant._id %>"><%= restaurant.name %></a></p>
           </div>
         <% } %>
       </div>
