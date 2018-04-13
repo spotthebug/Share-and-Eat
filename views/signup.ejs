@@ -26,7 +26,7 @@
             <a href="/about" class="btn white black-text">About</a>
             <a href="/login" class="btn white black-text">Log In</a>
           <% } else { %>
-            <a href="/api/users/<%=user.id%>"><%= user.username %></a>
+            <a href="/api/users/<%=user.id%>" class="btn red lighten-2 black-text">Welcome, <%= user.username %></a>
             <a href="/logout" class="btn white black-text">Log Out</a>
           <% } %>
         </ul>

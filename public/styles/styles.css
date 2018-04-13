@@ -136,3 +136,25 @@ img{
   margin-top: 1.5em;
   margin-left: 2em;
 }
+
+.shopping-cart {
+  margin-left: 53em;
+}
+
+.user-name {
+  margin-left: 7em;
+  font-size: 1.1em;
+}
+
+.user-name-index {
+  margin-left: 50em;
+  font-size: 1.1em;
+}
+
+.checkout {
+  padding: 2em;
+  margin-top: 3em;
+  font-size: 1.2em;
+  margin-right: 5em;
+  margin-left: 5em;
+}
