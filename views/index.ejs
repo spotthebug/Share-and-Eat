@@ -12,8 +12,6 @@
   <link rel="stylesheet" href="/styles/styles.css">
   <script src="./scripts/app.js"></script>
   <link href="https://fonts.googleapis.com/css?family=IBM+Plex+Sans+Condensed|IBM+Plex+Serif|Open+Sans+Condensed:300|PT+Sans|Poppins|Rajdhani" rel="stylesheet">
-
-
 </head>
 <body>
 
@@ -26,7 +24,7 @@
             <a href="/signup" class="btn white black-text">Sign up</a>
             <a href="/login" class="btn white black-text">Log In</a>
           <% } else { %>
-            <a href="/api/users/<%=user.id%>"><%= user.username %></a>
+            <a href="/api/users/<%=user.id%>" class="btn red lighten-2 black-text">Welcome, <%= user.username %></a>
             <a href="/logout" class="btn white black-text">Log Out</a>
           <% } %>
         </ul>

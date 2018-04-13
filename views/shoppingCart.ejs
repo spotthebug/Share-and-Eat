@@ -12,10 +12,11 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
   <link href="https://fonts.googleapis.com/css?family=IBM+Plex+Sans+Condensed|IBM+Plex+Serif|Open+Sans+Condensed:300|PT+Sans|Poppins|Rajdhani" rel="stylesheet">
 
+
   <title>Share and Eat</title>
+
 </head>
 <body>
-
   <div class="navbar-fixed">
     <nav>
       <div class="nav-wrapper red lighten-2">
@@ -23,7 +24,7 @@
         <ul class="right hide-on-med-and-down">
           <% if(!user) { %>
             <a href="/about" class="btn white black-text">About</a>
-            <a href="/signup" class="btn white black-text">Sign up</a>
+            <a href="/login" class="btn white black-text">Log In</a>
           <% } else { %>
             <a href="/api/users/<%=user.id%>" class="btn red lighten-2 black-text">Welcome, <%= user.username %></a>
             <a href="/logout" class="btn white black-text">Log Out</a>
@@ -33,23 +34,26 @@
     </nav>
   </div>
   <div>
-    <div class="row">
-      <div class="col-md-9">
-        <h2 class="login">Log In</h2>
-        <br>
-        <form method="POST" action="/login">
-          <div class="form-group form-style">
-            <input type="text" name="username" class="form-control" placeholder="Username">
+
+    <main>
+    <div id="target" class="row">
+      <h2 class="center-align">All Restaurants</h2>
+      <div class="container row">
+        <div class="row">
+          <div class="col s4 offset-s2">
+            <strong>Total: <%= session.totalPrice %></strong>
           </div>
-          <div class="form-group form-style">
-            <input type="password" name="password" class="form-control" placeholder="Password">
+        </div>
+
+
+          <div class="col s4 offset-s2">
+            <a href="/checkout"></a><input type="submit" class="btn red lighten-2" value="Checkout"></div>
           </div>
-          <div class="form-group form-style">
-            <input type="submit" class="btn red lighten-2" value="Log In">
-          </div>
-        </form>
+        </div>
       </div>
     </div>
-  </div>
+  </main>
+
+
 </body>
 </html>

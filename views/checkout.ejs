@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <!-- set viewport to device width to make site responsive -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- materialize css -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
+  <!-- custom styles -->
+  <link rel="stylesheet" type="text/css" href="/styles/styles.css">
+  <!-- jquery -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
+  <link href="https://fonts.googleapis.com/css?family=IBM+Plex+Sans+Condensed|IBM+Plex+Serif|Open+Sans+Condensed:300|PT+Sans|Poppins|Rajdhani" rel="stylesheet">
+
+
+  <title>Share and Eat</title>
+
+</head>
+<body>
+  <div class="navbar-fixed">
+    <nav>
+      <div class="nav-wrapper red lighten-2">
+        <a href="/" class="brand-logo"><img src="./images/S.png"></a>
+        <ul class="right hide-on-med-and-down">
+          <% if(!user) { %>
+            <a href="/about" class="btn white black-text">About</a>
+            <a href="/login" class="btn white black-text">Log In</a>
+          <% } else { %>
+            <a href="/api/users/<%=user.id%>" class="btn red lighten-2 black-text">Welcome, <%= user.username %></a>
+            <a href="/logout" class="btn white black-text">Log Out</a>
+          <% } %>
+        </ul>
+      </div>
+    </nav>
+  </div>
+  <div>
+
+  <h2 class="center-align">Share and Eat</h2>
+
+
+  <div class ="row grey lighten-4 checkout">
+    <main>
+      <div class="col s6 offset-s1"><img src="./images/food.png" class="icon-image"><p>Your order has been placed with your favorite local restaurant.</p><p>The total is $18.</p></div>
+      <div class="col s6 offset-s1"><img src="./images/bag.png" class="icon-image"><p>Pickup and enjoy the food!</p></div>
+      </div>
+    </div>
+    </main>
+  </div>
+
+  <section class="row info card-panel red lighten-2 footer-details">
+        <div class="col s2 offset-s1 white-text">
+          <p>Facebook</p>
+          <p>Instagram</p>
+          <p>LinkedIn</p>
+          <p>E-mail Us</p>
+        </div>
+        <div class="col s2 offset-s1 white-text">
+          <p>Terms </p>
+          <p>Privacy Policy</p>
+          <p>Travel</p>
+          <p>Business</p>
+        </div>
+        <div class="col s2 offset-s1 white-text">
+          <p>Press</p>
+          <p>Policies</p>
+          <p>Social Responsiblity</p>
+          <p>Help</p>
+        </div>
+        <div class="col s2 offset-s1 white-text">
+          <p>Careers</p>
+          <p>Volunteering</p>
+          <p>Contact Us</p>
+          <p>FAQs</p>
+        </div>
+      </section>
+      <footer>
+          <p class="center-align white-text red lighten-2 footer">© Share-and-Eat</p>
+      </footer>
+
+
+</body>
+</html>

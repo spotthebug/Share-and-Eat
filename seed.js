@@ -46,5 +46,5 @@ db.MenuItem.remove({},function(){
         }
       })
     })
-})
+});
 

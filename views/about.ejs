@@ -23,7 +23,7 @@
             <a href="/signup" class="btn white black-text">Sign up</a>
             <a href="/login" class="btn white black-text">Log In</a>
           <% } else { %>
-            <a href="/api/users/<%=user.id%>"><%= user.username %></a>
+            <a href="/api/users/<%=user.id%>" class="btn red lighten-2 black-text">Welcome, <%= user.username %></a>
             <a href="/logout" class="btn white black-text">Log Out</a>
           <% } %>
         </ul>
@@ -36,7 +36,7 @@
   </header>
 
   <div class ="row grey lighten-4 the-what">
-    <h2>How to Share-and-Eat</h2>
+    <h2>How to Share and Eat</h2>
     <div class="col s3 offset-s1"><img src="./images/search.png" class="icon-image"><p>The Where</p><p>Browse menus from your favorite local restaurant</p></div>
     <div class="col s3 offset-s1"><img src="./images/mobile-app.png" class="icon-image"><p>The What</p><p>Select what you want to eat and if you would like to donate. Submit your order.</p></div>
     <div class="col s3 offset-s1"><img src="./images/bag.png" class="icon-image"><p>The Pickup</p><p>Pickup and enjoy the food! </p></div>
@@ -44,7 +44,7 @@
   </div>
 
   <div class ="row grey lighten-4 the-what">
-    <h2>Why order with Share-and-Eat?</h2>
+    <h2>Why order with Share and Eat?</h2>
 
       <div class="col s3 offset-s1"><img src="./images/jewelry.png" class="icon-image"><p>Discover</p><p>We'll help you find hidden gems in your neighborhood.</p></div>
       <div class="col s3 offset-s1"><img src="./images/groceries.png" class="icon-image"><p>Better</p><p>Enjoy eating better by sharing the jow of a meal.</p></div>
