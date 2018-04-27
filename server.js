@@ -116,7 +116,6 @@ app.get('/restaurants/:id', function(req, res) {
 });
 
 app.get('/add-to-cart/:id', function(req, res) {
-  var restaurantId = req.params.restId;
   console.log(restaurantId);
   var foodItem = req.params.id;
   console.log(foodItem);
@@ -126,7 +125,7 @@ app.get('/add-to-cart/:id', function(req, res) {
     if (err) {
       return res.redirect('/');
     }
-    cart.add(item, item.id);
+    cart.add(item, item._id);
     req.session.cart = cart;
     console.log(req.session.cart);
   });

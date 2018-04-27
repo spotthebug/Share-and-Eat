@@ -3,6 +3,7 @@ module.exports = function Cart(oldCart) {
   this.totalQty = oldCart.totalQty || 0;
   this.totalPrice = oldCart.totalPrice || 0;
   this.donation = oldCart.donation || 0;
+  this.orderId;
 
   this.add = function(item, id) {
     var storedItem = this.items[id];
@@ -14,6 +15,7 @@ module.exports = function Cart(oldCart) {
     storedItem.price = storedItem.item.price * (storedItem.qty + storedItem.donation) ;
     this.totalQty += 1;
     this.totalPrice += storedItem.item.price;
+    this.orderId = Math.floor(Math.random() * (100000 - 98885) + 98885)
   }
   this.generateArray = function() {
     var arr = [];
